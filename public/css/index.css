@@ -1,0 +1,119 @@
+/* index.css for DBeaz */
+
+/* --- ヘッダ --- */
+#header {
+	position: relative; /* 相対配置（ガイドメニューのために設定） */
+	width: 100%; /* IE 6のために幅の指定が必要 */
+	margin-bottom: 0px; /* ヘッダの下マージン */
+	padding: 0px 0 0px; /* ヘッダのパディング（上、左右、下） */
+	border-bottom: 1px #4b4b4b solid; /* ヘッダの下境界線 */
+	color: #909098; 	/* Body文字色 */
+
+	background: #404048; /* Old browsers */
+	background: -moz-linear-gradient(top,  #202028 0%, #606068 100%); 		/* FF3.6+ add */
+	background: -webkit-linear-gradient(top,  #202028 0%, #606068 100%); 	/* Chrome10+,Safari5.1+ */
+	background: -ms-linear-gradient(top,  #404048 0%,#202028 0%, #606068 100); /* IE10+ */
+	background: linear-gradient(top,  #404048 0%, #202028 0%, #606068 100); /* W3C */
+	text-align: center;
+}
+
+#container {
+/*  col-md-3: 25%, md4: 1/3, md5: 41%, md6: 50%, md7: 58%,  md8:2/3 */
+/*	width: 540px; /* コンテナの幅 */
+	margin: 0 auto; /* センタリング */
+	background: -moz-linear-gradient(top,  #e0e0f0 0%, #909098 100%); 		/* FF3.6+ add */
+	background: -webkit-linear-gradient(top,  #e0e0f0 0%, #909098 100%); 	/* Chrome10+,Safari5.1+ */
+	background: -ms-linear-gradient(top,  #b0bccd 0%,#e0e0f0 0%, #686878 100); /* IE10+ */
+	background: linear-gradient(top,  #b0bccd 0%, #e0e0f0 0%, #686878 100); /* W3C */
+	color: #202020; 	/* Body文字色 */
+}
+
+
+/* Body背景/テキスト */
+body {
+/* margin: 0; */
+/* padding: 0; */
+/*	font-size: 80%    	Body文字サイズ */
+/* background-color: #2c2c2c;  ヘッダの背景色 */
+background-color: #2c2c2c; /* 背景色 */
+color: #202020;
+}
+
+#backwall {
+background-color: #303038;
+color: #202020;
+}
+
+
+/*
+#dataTables {
+  margin:0 auto;
+	background-color: #a0a0e0;
+color: #101010;
+}
+
+table.display {
+  margin:0 auto;
+  width:100%;
+   border:1
+}
+*/
+
+
+#viewTable {
+//background-color: #e0e0ff;
+background-color: #b0c0e8;
+//color: #101010;
+//width 80%;
+font-size: 90%;
+}
+
+
+#itemTable {
+background-color: #eaf0f8;
+font-size: 90%;
+}
+
+
+#footer {
+color: #808080;
+}
+
+
+
+
+.ui-page, .ui-mobile-viewport {
+	background: #222230;
+}
+
+.ui-content {
+	font-size: 120%;
+	color: #88aacc;  /* body text */
+}
+
+/* Header gradient */
+.ui-header {
+	font-size: 110%;
+	background: #8888a0; /* Old browsers */
+//	background: -webkit-linear-gradient(top,  #8888a0 0%, #585868 100%); /* Chrome10+,Safari5.1+ */
+	background: -webkit-linear-gradient(top,  #e0e0f0 0%, #686878 100%); /* Chrome10+,Safari5.1+ */
+	background: -ms-linear-gradient(top,  #b0bccd 0%,#e0e0f0 0%, #686878 100); /* IE10+ */
+	background: linear-gradient(top,  #b0bccd 0%, #e0e0f0 0%, #686878 100); /* W3C */
+}
+
+
+/* Button gradient */
+.ui-btn {
+	font-size: 120%;
+	background: #8888a0; /* Old browsers */
+	background: -webkit-linear-gradient(top,  #c0c0e0 0%, #585868 100%); /* Chrome10+,Safari5.1+ */
+	background: -ms-linear-gradient(top,  #b0bccd 0%,#c0c0e0 0%, #585868 100); /* IE10+ */
+	background: linear-gradient(top,  #b0bccd 0%, #c0c0e0 0%, #585868 100); /* W3C */
+	cursor: default;
+}
+
+.ui-listview {
+	border: none transparent !important;
+}
+
+
