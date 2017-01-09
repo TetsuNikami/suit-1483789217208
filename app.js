@@ -1,7 +1,7 @@
 // expressアプリ・フレームワークの設定
 var express = require('express');
 var app = express();
-console.log('App.js express called');
+console.log('Speed UI Tool - App.js express called');
 
 // POSTパラメータ取得用 body-parser設定 (express4からurlencoded()とjson()必要)
 var bodyParser = require('body-parser');

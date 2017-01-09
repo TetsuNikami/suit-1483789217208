@@ -75,19 +75,20 @@ exports.addNewDB = function(newDBName, newColumnNames, callback) {
 				} else { console.log("dbeaz.js addNewDB.save2...error: " + err2); }
 			}); // function err2
 		} else { console.log("dbeaz.js addNewDB.save...error: " + err); }
-	}); // function err
 
-	console.log('dbeaz.js DB List saved: ' + JSON.stringify(doc));
 
-	var retdoc = {
-		uuid : doc.uuid,
-		date : doc.date,
-		dbeaz_id : doc.dbeaz_id,
-		dbeaz_db : doc.dbeaz_db,
-		col_list : currentDBList
-	};
+		console.log('dbeaz.js DB List saved: ' + JSON.stringify(doc));
 
-	callback(null, retdoc);
+		var retdoc = {
+			uuid : doc.uuid,
+			date : doc.date,
+			dbeaz_id : doc.dbeaz_id,
+			dbeaz_db : doc.dbeaz_db,
+			col_list : currentDBList
+		};
+
+		callback(null, retdoc);
+	}); // save
 }; // addDoc
 
 
@@ -111,6 +112,73 @@ exports.addItem = function(db_name, req, callback) {
 
 	callback(null, doc);
 }; // addDoc
+
+
+//1 doc update追加
+exports.updateItem = function(db_name, uid, req, callback) {
+	// 検索しID取得
+	var colname_key = { "key" : uid };
+	var doc = {};
+	var id = 0;
+	var i = 0;
+
+	db.view('dbeaz/cols_view', colname_key,  function (err, row) {
+		id = row[0].id;
+		console.log("dbeaz.js updateItem row: " + JSON.stringify(row));
+
+		// save upsated doc
+		doc.uuid = uid;		//same uuid
+		////doc._id  = id;	// different id
+		////doc._rev = uuid.v4();	// no revise number
+
+		var date = new Date();
+		doc.date = date.toFormat("YYYY/MM/DD HH24:MI");
+
+		doc.dbeaz_id = "a";
+		doc.dbeaz_db = db_name;
+		doc.col_list = req;
+
+		// 項目の保存
+		db.save( doc, function (err) {
+			if (!err) {
+				console.log('dbeaz.js updateItem saved: ' + JSON.stringify(doc));
+				db.remove( id );		// remove old record
+				console.log('dbeaz.js updateItem removed: '+ id);
+			} else
+				console.log('dbeaz.js updateItem error: ' + err);
+
+			callback(null, doc);
+		});
+
+	}); // db.view
+}; // updateItem
+
+
+//1 doc remove
+exports.removeItem = function(db_name, uid, callback) {
+	// 検索しID取得
+	var colname_key = { "key" : uid };
+	var doc = {};
+	var id = 0;
+	var i = 0;
+
+	db.view('dbeaz/cols_view', colname_key,  function (err, row) {
+		id = row[0].id;
+		console.log("dbeaz.js removeItem row: " + JSON.stringify(row));
+
+		// save upsated doc
+		doc.uuid = uid;
+
+		db.remove( id, function (err) {
+			if (!err) {
+				console.log('dbeaz.js removeItem removed: ' + id);
+			} else
+				console.log('dbeaz.js removeItem error: ' + err);
+
+			callback(null, doc);
+		});
+	}); // db.view
+}; // removeItem
 
 
 //テストデータ追加
@@ -221,11 +289,11 @@ exports.getDocs = function(db_name, callback) {
 	console.log("dbeaz.js getDocs...colname_key: " + JSON.stringify(colname_key) );
 
 	db.view('dbeaz/list_docs', colname_key,  function (err, rows) {
-		//console.log("app.js getDocs...rows" + JSON.stringify(rows));
+		/* console.log("app.js getDocs...rows" + JSON.stringify(rows)); */
 
 		if (!err) {
 		 rows.forEach(function (id, row) {
-			 console.log("dbeaz.js getDocs...%s, key: %s, row: %s", i, id, JSON.stringify(row));
+			 //console.log("dbeaz.js getDocs...%s, key: %s, row: %s", i, id, JSON.stringify(row));
 			 docs[i] = row;
 			 i ++;
 		 });
@@ -242,8 +310,7 @@ exports.getItem = function(uid, callback) {
 	var colname_key = { "key" : uid };
 	var doc = [];
 	var i = 0;
-
-	console.log("dbeaz.js getItem: " + uid);
+	/* console.log("dbeaz.js getItem: " + uid); */
 
 //	db.get(uuid,  function (err, row) {		// id =/= uuid
 	db.view('dbeaz/cols_view', colname_key,  function (err, row) {
@@ -252,4 +319,5 @@ exports.getItem = function(uid, callback) {
 		callback(null, row[0].value)
 	}); // db.get
 }; // getItem
+
 

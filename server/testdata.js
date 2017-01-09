@@ -14,14 +14,14 @@ exports.insertTestData = function(db) {
 			date : now,
 			dbeaz_id : "dbeaz_db_list",
 			dbeaz_db : "DB",
-			col_list : [  "Opportunity List" ,"Name List", "DB1" ]
+			col_list : [  "Opportunity List", "案件リスト" ,"Name List", "DB1" ]
 			},
 
 	        //Opportunity DBのカラムのリスト
 			{uuid : uuid.v4(),
 			date : now,
 			dbeaz_id : "cols_name",
-			dbeaz_db : "Opportunity List",
+			dbeaz_db : "案件リスト",
 			col_list : [ "名称" ,"金額", "予定日", "ステータス", "メモ"]
 			},
 
@@ -29,36 +29,88 @@ exports.insertTestData = function(db) {
 			{uuid : uuid.v4(),
 			date : now,
 			dbeaz_id : "a",
-			dbeaz_db : "Opportunity List",
+			dbeaz_db : "案件リスト",
 			col_list : [ "都市銀行" ,"10", "2016/1/1", "提案中", "お客様都合により契約遅延"]
 			},
 
 			{uuid : uuid.v4(),
 			date : now,
 			dbeaz_id : "a",
-			dbeaz_db : "Opportunity List",
+			dbeaz_db : "案件リスト",
 			col_list : [ "地方銀行" ,"5", "2015/10/1", "契約", "契約処理中"]
 			},
 
 			{uuid : uuid.v4(),
 			date : now,
 			dbeaz_id : "a",
-			dbeaz_db : "Opportunity List",
+			dbeaz_db : "案件リスト",
 			col_list : [ "信託銀行" ,"6", "2016/4/1", "提案", "提案交渉中"]
 			},
 
 			{uuid : uuid.v4(),
 			date : now,
 			dbeaz_id : "a",
-			dbeaz_db : "Opportunity List",
+			dbeaz_db : "案件リスト",
 			col_list : [ "ある銀行" ,"3", "2015/12/1", "提案", "内定"]
 			},
 
 			{uuid : uuid.v4(),
 			date : now,
 			dbeaz_id : "a",
-			dbeaz_db : "Opportunity List",
+			dbeaz_db : "案件リスト",
 			col_list : [ "メガ銀行" ,"100", "2016/7/1", "OI", "OI中"]
+			},
+
+
+	        //Opportunity DBのカラムのリスト
+			{uuid : uuid.v4(),
+			date : now,
+			dbeaz_id : "cols_name",
+			dbeaz_db : "Opportunity List",
+			col_list : [ "Name" ,"$M", "Date", "Status", "Memo"]
+			},
+
+			//Opportunity DBの各ドキュメント
+			{uuid : uuid.v4(),
+			date : now,
+			dbeaz_id : "a",
+			dbeaz_db : "Opportunity List",
+			col_list : [ "CityBank" ,"10", "2016/1/1", "Proposal", "Pending customer reason"]
+			},
+
+			{uuid : uuid.v4(),
+			date : now,
+			dbeaz_id : "a",
+			dbeaz_db : "Opportunity List",
+			col_list : [ "N.Y.Bank" ,"5", "2015/10/1", "Contract", "Contracting"]
+			},
+
+			{uuid : uuid.v4(),
+			date : now,
+			dbeaz_id : "a",
+			dbeaz_db : "Opportunity List",
+			col_list : [ "JapanBank" ,"6", "2016/4/1", "Proposal", "Negotiating"]
+			},
+
+			{uuid : uuid.v4(),
+			date : now,
+			dbeaz_id : "a",
+			dbeaz_db : "Opportunity List",
+			col_list : [ "aBank" ,"3", "2015/12/1", "Proposal", "Approved"]
+			},
+
+			{uuid : uuid.v4(),
+			date : now,
+			dbeaz_id : "a",
+			dbeaz_db : "Opportunity List",
+			col_list : [ "TopBank" ,"100", "2016/7/1", "OI", "OI phase"]
+			},
+
+			{uuid : uuid.v4(),
+			date : now,
+			dbeaz_id : "a",
+			dbeaz_db : "Opportunity List",
+			col_list : [ "EUBank" ,"100", "2016/7/1", "OI", "OI phase"]
 			},
 
 
@@ -89,6 +141,27 @@ exports.insertTestData = function(db) {
 			dbeaz_id : "a",
 			dbeaz_db : "Name List",
 			col_list : [ "佐藤" ,"女" ]
+			},
+
+			{uuid : uuid.v4(),
+			date : now,
+			dbeaz_id : "a",
+			dbeaz_db : "Name List",
+			col_list : [ "John" ,"M" ]
+			},
+
+			{uuid : uuid.v4(),
+			date : now,
+			dbeaz_id : "a",
+			dbeaz_db : "Name List",
+			col_list : [ "Elly" ,"F" ]
+			},
+
+			{uuid : uuid.v4(),
+			date : now,
+			dbeaz_id : "a",
+			dbeaz_db : "Name List",
+			col_list : [ "Cameron" ,"M" ]
 			},
 
 		];

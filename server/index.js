@@ -12,9 +12,26 @@ var uuid = require('node-uuid');
 var cradle = require('cradle');
 
 // DBeaz DB Model
-      var dbeaz = require('./dbeaz');			// for DB access /**/
-/*    var dbeaz = require('./dbeaz_ut');		// for Unit Test   */
+/*      var dbeaz = require('./dbeaz');			// for DB access /**/
+/*     var dbeaz = require('./dbeaz_ut');		// for Unit Test   */
+var suit_model = require('./suit_model_ut');		// for Unit Test   */
 
+
+
+  //データ辞書からの全データ項目取得
+  router.post('/getDataItems', function(req, res){
+  	var docs = {};
+
+  	suit_model.getDataItems(req.body.dbeaz_id, function (err, docs) {		// suit_model.getDataItems call
+  		console.log("index.js getDataItems...docs: %s", JSON.stringify(docs));
+  		res.send(docs);
+  	});
+  }); // post
+
+
+
+
+/*
 
 // 「追加」ボタンの id=addDB, ui_item.jsの url:'/addDB'でcall
 router.post('/addDB', function(req, res){
@@ -31,6 +48,26 @@ router.post('/addItem', function(req, res){
 	var doc = {};
 	dbeaz.addItem(req.body.db_name, req.body.item, function (err, doc) {
 		console.log("index.js add...doc: %s", JSON.stringify(doc));
+		res.send(doc);
+	});
+});
+
+
+//Itemの「更新」ボタンの id=updateItem, ui_item.jsの url:'/updateItem'でcall
+router.post('/updateItem', function(req, res){
+	var doc = {};
+	dbeaz.updateItem(req.body.db_name, req.body.uuid, req.body.item, function (err, doc) {
+		console.log("index.js updateItem...doc: %s", JSON.stringify(doc));
+		res.send(doc);
+	});
+});
+
+
+//Itemの「削除」ボタンの id=removeItem, ui_item.jsの url:'/removeItem'でcall
+router.post('/removeItem', function(req, res){
+	var doc = {};
+	dbeaz.removeItem(req.body.db_name, req.body.uuid, function (err, doc) {
+		console.log("index.js removeItem...doc: %s", JSON.stringify(doc));
 		res.send(doc);
 	});
 });
@@ -69,7 +106,6 @@ router.post('/getDBList', function(req, res){
 
 	dbeaz.getDBList("dbeaz_db_list", function (err, docs) {	// DBeazに現在登録されているDBのリストを取得
 
-		console.log("index.js getDBList...docs: %s", JSON.stringify(docs));
 		res.send(docs);
 	});
 }); // post
@@ -78,8 +114,6 @@ router.post('/getDBList', function(req, res){
 //特定DB名のカラム名取得
 router.post('/getColumnRow', function(req, res){
 	var doc = {};
-
-	console.log("index.js getColumnRow");
 	console.log("index.js getColumnRow...req: %s", req.body.dbeaz_id);
 
 	dbeaz.getColumnRow(req.body.dbeaz_id, function (err, doc) {
@@ -111,7 +145,7 @@ router.post('/getItem', function(req, res){
 	});
 }); // post
 
-
+*/
 
 module.exports = router;
 

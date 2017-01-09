@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Speed UI Tool gamma</title>
+	<title>Speed UI Tool α</title>
 	<link rel="stylesheet" href="css/index.css"/>
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="css/jquery.dataTables.min.css"/>
@@ -8,83 +8,103 @@
 	<script src="js/jquery-1.11.3.min.js"></script>
 	<script src="js/jquery.dataTables.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/ui_item.js"></script>
-	<script> $(document).ready(function(){ getColumnRow() }); 	</script>
+	<script type="text/javascript" src="js/ui_model.js"></script>
+	<!-- script type="text/javascript" src="js/ui_item.js"></script -->
+	<script> $(document).ready(function(){ getDataItems() }); 	</script>
+	<!-- script> $(document).ready(function(){ getColumnRow() }); 	</script> -->
 	<!-- script> $(document).ready(function(){ $('#viewTable').dataTable() }); 	</script -->
 	<link rel="shortcut icon" href="img/touchstone.jp.icon2.gif">
 </head>
 
 <body id="backwall">
-<!-- ヘッダー data-role="header" -->
-<div id="header">
-	<h4>DB-Eaz</h4>
-</div>
+
+<!-- ヘッダー -->
+
+  <nav class="navbar navbar-inverse navbar-fixed-top" >
+    <div class="container" id="nav-header" >
+      <div class="navbar-header" >
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"> &nbsp; &nbsp; Speed UI Tool α</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse" >
+	    <form class="navbar-form navbar-right" name="db_list" >
+			<h5>
+		    <!--  select name="select_db" id="select-db-list" onchange = "changeDB()" -->
+			<!--  option value="newDB">新規DB</option -->
+		    <select name="select_project" id="select-project-list" onchange = "changeDB()" >
+			<option value="project1">受発注プロジェクト</option>
+			</select>
+		    <select name="select_usecase" id="select-usecase-list" onchange = "changeDB()" >
+			<option value="usecae1">オーダーエントリーUC</option>
+			</select>
+			&nbsp; &nbsp;
+			<a href="/index.html">初期画面</a>
+			&nbsp; &nbsp;
+			<a href="javascript:location.reload();">リフレッシュ</a>
+			&nbsp; &nbsp; &nbsp;
+			</h5>
+	    </form>
+	  </div><!--/.navbar-collapse -->
+	  </div>
+  </nav>  <!-- navbar -->>
+
 
 <section class="container" style="top:0px">
-	<!-- Example row of columns -->
- 	<div class="row">
-    	<div class="col-md-7" id="container" style="top:0px"> <!-- md7 + md5 = 12 -->
-    		<form name="db_view">
-        	<h4>DB View　
-			<select name="select_db" id="select-db-list" onchange = "changeDB()">
-			<option value="newDB">新規DB</option>
-			</select>
-			</h4>
+  <div class="row" >
+   	<div class="col-md-3" id="container"  style="top:30px;" > <!-- md3 + md9 = 12 -->
+   	<!-- form name="db_view"> -->
+   	<form name="screen_view">
+		<!-- div align="center" style="color:#b0b0d8;">Table</div> -->
+	    <select name="select_screen" id="select-screen" onchange = "changeDB()" >
+		<option value="screen1">商品受注登録画面</option>
+		<option value="screen2">顧客検索画面</option>
+		<option value="screen3">商品検索画面</option>
+		</select>
+		<select name="select_screen_type" id="select-screen-type" onchange = "changeDB()" >
+		<option value="scr_type1">入力_登録</option>
+		<option value="scr_type2">表示_確認</option>
+		<option value="scr_type3">検索_TBL表示</option>
+		<option value="scr_type4">検索_TBL更新削除</option>
+		</select>
+		<select name="edit_mode" id="edit-mode" onchange = "changeDB()" >
+		<option value="edit_mode1">　　　　　上部編集　　　　　</option>
+		<option value="edit_mode2">　　　　　下部編集　　　　　</option>
+		</select>
+	</form>
 
-		<!-- table id="dataTable" border="1" -->
-		<table id="viewTable" cellpadding="0" cellspacing="0" border="0" class="display"  >
-		</table><br>
+   	<form name="data_list_view">
+		<table id="viewTable" cellpadding="0" cellspacing="0" border="0" class="display compact"  >
+		</table>
+	</form>
+    </div> <!-- col-md-3 -->
 
+    <div class="col-md-9" id="container" style="top:30px">
+	 	<!-- div align="center" style="color:#b0b0d8;" >Item</div> -->
 
-			</form>
+		<div id="UIcanvas">
+			<table id="canvasTable" cellpadding="0" cellspacing="5" border="0" class="display compact"  ><tr>
+			</table>
+		</div> <!-- inputForm -->
 
-<!-- tr
-
-	    <thead id="tableHeader">
-	    </thead>
-		<tbody id="tableItems">
-			<tr></tr>
-		</tbody>
-		</table><br>
--->
-
-        </div> <!-- col-md-7 -->
-
-        <div class="col-md-5" id="container" style="top:0px">
-      		<h4>Items</h4>
-
-	    <div id="inputForm">
-			<table border="1" cellpadding="10" id="itemTable"><tr>
-	        <th>新DB名: </th><th><input type="text" id="newDBName"></th>
-	        </tr><tr></tr><tr>
-	        <th>新DBカラム: </th><th><br><textarea cols="30" rows="6" id="newColumnNames"></textarea><br><br></th>
-	        </tr><tr></tr><tr>
-	        <th></th><th><span><button value="新DB追加" id="addDB"> 新DB追加 </button></th>
-			</tr></table>
-
-	        <!--  span><input type="text" id="item1"></span -->
-	        <!-- button value="追加" id="add"> 追加 </button -->
-		</div>
-
-		<br> &nbsp;
-        &nbsp; <button value="新規追加" id="addItem"> 新規追加 </button> &nbsp;
-	    &nbsp; <button value="更新" id="updateItem"> 更新 </button> &nbsp;
-	    &nbsp; <button value="削除" id="removeItem"> 削除 </button> &nbsp;
 	    <br> &nbsp;
-        </div> <!-- col-md-5 -->
-      </div> <!-- row class -->
+    </div> <!-- col-md-9 -->
+  </div> <!-- row class -->
 
-      <hr>
+  <br><br><!-- hr -->
+  <footer id="footer">
+    <!-- p>&copy; 2015 IBM Corporation</p -->
+	<br>
+    <!-- button value="全件表示" id="getAll"> 全件表示 </button>  -->
+    <button value="テストデータ追加" id="addTestData"> テストデータ追加 </button>
+    <button value="全件削除" id="removeAll"> 全件削除 </button>
+  </footer>
 
-      <footer id="footer">
-        <p>&copy; touchstone.jp 2015</p>
-
-		<br>
-        <button value="全件表示" id="getAll"> 全件表示 </button>
-	    <button value="テストデータ追加" id="addTestData"> テストデータ追加 </button>
-	    <button value="全件削除" id="removeAll"> 全件削除 </button>
-      </footer>
-    </div> <!-- /container -->
+</section>
 
 </body>
 </html>

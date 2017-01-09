@@ -1,8 +1,11 @@
+// DBEaz用であり、SUIT用ではない
+
 // ui_item.js ブラウザUI用 JavaScript (index.htmlより呼ばれる)
 
 var currentDB = "";
 console.log('ui_item init, getDBList ' + currentDB);
 
+var itemLimit = 30;
 
 // 初期画面の表示で、POSTでindex.jsのgetDBListをコールしDB List取得、SELECTリストに表示
 $.ajax({
@@ -74,10 +77,10 @@ $.ajax({
 //    	param.item1 = $("#item1").val() || "";
 
     	var aItem = null;
-   		for(var i=0; i<100; i++) {
+   		for(var i=0; i<itemLimit; i++) {
 
    			aItem = $("#i"+ (i+1) ).val();
-   			if(aItem==null) i = 100;
+   			if(aItem==null) i = itemLimit;
    			else   			param.item[i] = aItem;
 
    			console.log("ui_item.js addItem(): %s, %s ", i, param.item[i]);
@@ -102,6 +105,69 @@ $.ajax({
             error:  function(data) { console.log('error add: ' + JSON.stringify(data)); }
     	});
      }); // #addItem
+
+
+   // 更新ボタン（index.htmlのid=uodateItem）押下時 実行
+   $("#updateItem").click(function(e){  e.preventDefault();
+    	var param = {};
+    	param.db_name = currentDB;
+    	param.uuid    = document.db_view.ii.value
+
+    	param.item = [];
+    	var aItem = null;
+   		for(var i=0; i<itemLimit; i++) {
+
+   			aItem = $("#i"+ (i+1) ).val();
+   			if(aItem==null) i = itemLimit;
+   			else   			param.item[i] = aItem;
+
+   			console.log("ui_item.js updateItem(): %s, %s ", i, param.item[i]);
+   		}
+
+    	// POSTでのajaxコールで、サーバーのapp.jsのapp.post /add呼び出し
+    	$.ajax({
+    		type: 'POST',
+    		data: JSON.stringify(param),
+    		contentType: 'application/json',
+            url: '/updateItem',
+            success: function(data) {
+
+	  	   		setTimeout( function() {
+	 	   			location.href = "./index.html?"+ encodeURI(currentDB) +"";  //sleepしないと先に実行
+	  	   		}, 200 );
+
+            	console.log('ui_item.js addItem data: ' + JSON.stringify(data));
+            	////showTable(data);
+            },
+            error:  function(data) { console.log('error update: ' + JSON.stringify(data)); }
+    	});
+     }); // #addItem
+
+
+   // Item削除ボタン（index.htmlのid=removeItem）押下時 実行
+   $("#removeItem").click(function(e){  e.preventDefault();
+    	var param = {};
+    	param.db_name = currentDB;
+    	param.uuid    = document.db_view.ii.value
+
+    	// POSTでのajaxコールで、サーバーのapp.jsのapp.post /add呼び出し
+    	$.ajax({
+    		type: 'POST',
+    		data: JSON.stringify(param),
+    		contentType: 'application/json',
+            url: '/removeItem',
+            success: function(data) {
+
+	  	   		setTimeout( function() {
+	 	   			location.href = "./index.html?"+ encodeURI(currentDB) +"";  //sleepしないと先に実行
+	  	   		}, 200 );
+
+            	console.log('ui_item.js removeItem uuid: ' + param.uuid );
+            	////showTable(data);
+            },
+            error:  function(data) { console.log('error update: ' + param.uuid ); }
+    	});
+     }); // #removeItem
 
 
    // テストデータ追加ボタン（index.htmlのid=addTestData）押下時 実行（テスト用）
@@ -247,7 +313,8 @@ $.ajax({
 
  //DB-ViewのDB名が選択された時のアクション
  function changeDB() {
-	 obj = document.db_view.select_db;
+//	 obj = document.db_view.select_db;
+	 obj = document.db_list.select_db;
 
 	 index = obj.selectedIndex;
 	 //if (index != 0){
@@ -294,7 +361,7 @@ $.ajax({
 
 	        	 // .DataTable() でid=viewTable のtableに、jQuery DataTableを割り当てる
 	        	 var currentDataTable = $('#viewTable').DataTable(
-	        			 { bAutoWidth : false, aLengthMenu : [50,100,200,300], bProcessing : true });
+	        			 { bAutoWidth : false, aLengthMenu : [25,50,100,200], bProcessing : true });
 
 	        	 getDocs( currentDataTable );
 
@@ -338,7 +405,7 @@ $.ajax({
 
 	 for(var i=0; i<row.col_list.length; i++) {
 		 if(i==0) {
-			 res = res.concat("<tr><th width=\"90\">日時 (自動更新)</th>");
+			 res = res.concat("<tr><th width=\"92\">日時 (自動更新)</th>");
 			 res = res.concat("<th> <input type=\"text\" id=\"i0\"> </th></tr>");
 		 }
 
@@ -422,8 +489,6 @@ $.ajax({
  	 return res;
   }; // showTable
  */
-
-
 
 
 
