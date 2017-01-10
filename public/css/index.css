@@ -5,6 +5,19 @@ a:visited 	{ color: #b0b0d8; }  /* �K��ς� */
 a:hover 	{ color: #a0a0ff; }  /* �|�C���g�� */
 a:active 	{ color: #b0b0f0; }  /* �I�� */
 
+#sortable {
+	list-style-type: none;
+	margin: 4; 	padding: 0;
+	width: 800px;
+}
+
+#sortable li {
+	margin: 2px 2px 2px 0;
+	padding: 1px; float: left;
+	width: 220px; height: 30px;
+	font-size: 1em; text-align: left;
+}
+
 /* --- Bootstrap �Œ�w�b�_ --- */
 #nav-header {
 	position: relative;  /* 相対配置（ガイドメニューのために設定） */
