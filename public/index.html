@@ -3,9 +3,12 @@
 	<title>Speed UI Tool α</title>
 	<link rel="stylesheet" href="css/index.css"/>
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/jquery-ui.min.css"/>
 	<link rel="stylesheet" href="css/jquery.dataTables.min.css"/>
 	<!-- script src="http://code.jquery.com/jquery-1.11.3.min.js"></script -->
-	<script src="js/jquery-1.11.3.min.js"></script>
+	<!-- script src="js/jquery-1.11.3.min.js"></script> -->
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
 	<script src="js/jquery.dataTables.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/ui_model.js"></script>
@@ -14,6 +17,15 @@
 	<!-- script> $(document).ready(function(){ getColumnRow() }); 	</script> -->
 	<!-- script> $(document).ready(function(){ $('#viewTable').dataTable() }); 	</script -->
 	<link rel="shortcut icon" href="img/touchstone.jp.icon2.gif">
+
+  <script>
+  $( function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  } );
+  </script>
+
+
 </head>
 
 <body id="backwall">
@@ -58,7 +70,8 @@
   <div class="row" >
    	<div class="col-md-3" id="container"  style="top:30px;" > <!-- md3 + md9 = 12 -->
    	<!-- form name="db_view"> -->
-   	<form name="screen_view">
+   	<!-- form name="screen_view"> -->
+   	<form name="data_list_view">
 		<!-- div align="center" style="color:#b0b0d8;">Table</div> -->
 	    <select name="select_screen" id="select-screen" onchange = "changeDB()" >
 		<option value="screen1">商品受注登録画面</option>
@@ -75,9 +88,7 @@
 		<option value="edit_mode1">　　　　　上部編集　　　　　</option>
 		<option value="edit_mode2">　　　　　下部編集　　　　　</option>
 		</select>
-	</form>
 
-   	<form name="data_list_view">
 		<table id="viewTable" cellpadding="0" cellspacing="0" border="0" class="display compact"  >
 		</table>
 	</form>
@@ -90,6 +101,15 @@
 			<table id="canvasTable" cellpadding="0" cellspacing="5" border="0" class="display compact"  ><tr>
 			</table>
 		</div> <!-- inputForm -->
+
+
+		<div id="sortCanvas">
+		<ul id="sortable">
+		</ul>
+		</div> <!-- sortCanvas -->
+
+
+
 
 	    <br> &nbsp;
     </div> <!-- col-md-9 -->
@@ -105,6 +125,7 @@
   </footer>
 
 </section>
+
 
 </body>
 </html>
