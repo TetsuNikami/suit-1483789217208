@@ -16,7 +16,7 @@ var server = require('./server');
 app.use('/', server);
 
 //環境変数にポート番号が無ければ、port=3000 設定
-var port = (process.env.VCAP_APP_PORT || 3000);
+var port = (process.env.VCAP_APP_PORT || 3001);
 // サーバー開始 （ "throw er;" エラーが出力されたらポート重複）
 app.listen(port);
 console.log('app.js started on port ' + port);
