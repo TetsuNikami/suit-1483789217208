@@ -7,7 +7,7 @@ a:active 	{ color: #b0b0f0; }  /* �I�� */
 
 #sortable {
 	list-style-type: none;
-	margin: 4; 	padding: 0;
+	margin: 10; 	padding: 4;
 	width: 800px;
 }
 

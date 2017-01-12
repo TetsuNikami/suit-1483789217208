@@ -117,7 +117,13 @@ function onCheck(i, item) {
 
 	 if(pos>0) data_name = item.substr(pos+1);
 
-	 $("#sortable").append("<li class=\"ui-state-default\">"+data_name+" <input type=text size=15 maxlength=15></li>");
+	 if (document.getElementById("d"+i).checked) {  // checked = true
+//		 $("#sortable").append("<li class=\"ui-state-default\">"+data_name+" <input type=text size=15 maxlength=15></li>");
+		 $("#sortable").append("<li class=i"+i+">"+data_name+" <input type=text size=15 maxlength=15></li>");
+	 } else {  // not checked
+		 $(".i"+i).remove();
+	 }
+
 
 }
 
