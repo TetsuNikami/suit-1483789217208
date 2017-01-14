@@ -14,7 +14,7 @@ function getDataItems(currentDataTable) {
 	 $("#viewTable").append("<tfoot>"+ columns +"</tfoot>" );
 
 	 var currentDataTable = $('#viewTable').DataTable(
-			 { bAutoWidth : false, aLengthMenu : [15,20,30,50], bProcessing : true });
+			 { bAutoWidth : false, aLengthMenu : [13,20,30,50], bProcessing : true });
 
 	var param = {};
 	console.log("ui_model.js - getDataItems() ");
@@ -66,6 +66,24 @@ function onCheck(i, item, len) {
 
 }
 
+
+function changeScreenCol() {
+
+	var width = 800;
+
+	if (document.screen_view.select_screen_col.value == "scr_col1")
+		li_width = width-300;
+	else if (document.screen_view.select_screen_col.value == "scr_col2")
+		li_width = (width-200)/2;
+	else if (document.screen_view.select_screen_col.value == "scr_col3")
+		li_width = (width-100)/3;
+	else if (document.screen_view.select_screen_col.value == "scr_col4")
+		li_width = (width-50)/4;
+
+	 $("#sortable li").css("width", li_width);
+
+	 console.log("ui_model.js - changeScreenCol(): li_width = "+li_width+" - "+document.screen_view.select_screen_col.value);
+}
 
 
 
