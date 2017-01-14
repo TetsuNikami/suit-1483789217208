@@ -6,65 +6,6 @@ console.log('ui_model.js init, getDBList ' + currentUC);
 var itemLimit = 50;
 
 
-/*
-function getColumnRow() {
-
-var row = {};
-//currentDB = decodeURI( window.location.search.substring( 1 ) );
-console.log('getColmnRow() currentDB param: ' + currentUC);
-
-	var param = {};
-param.dbeaz_id = currentUC;
-console.log("getColumnRow() dbeaz_id: " + currentUC);
-var res = "";
-var res2 = "";
-
-if (currentUC!="") {
-	$("#itemTable").empty();
-
-	// POSTでのajaxコールで、サーバーのapp.jsのapp.post /getColumnNames呼び出し
-	$.ajax({
-		type: 'POST',
-		data: JSON.stringify(param),
-		contentType: 'application/json',
-        url: '/getColumnRow',
-        success: function(row) {
-        	// View表示（左）
-      		console.log('showColumnRow()...row: '+ JSON.stringify(row));
-
-      		var columns = "<th>データ項目名</th><th>属性</th><th>長さ</th>");
-
-
-//       		res = makeColumns(row);
-
-        	 $("#viewTable").append("<thead>"+ columns +"</thead>" );
-        	 $("#viewTable").append("<tfoot>"+ columns +"</tfoot>" );
-
-        	 // .DataTable() でid=viewTable のtableに、jQuery DataTableを割り当てる
-        	 var currentDataTable = $('#viewTable').DataTable(
-        			 { bAutoWidth : false, aLengthMenu : [25,50,100,200], bProcessing : true });
-
-        	 getDocs( currentDataTable );
-
-        	 // Item表示（右）
-        	 res2 = makeItems(row);
-        	 $("#itemTable").append( res2 );
-
-        	 // .DataTable() でid=viewTable のtableに、jQuery DataTableを割り当てる
-        	 var currentDataTable2 = $('#itemTable').DataTable(
-        	 		 { bAutoWidth : true, bProcessing : true });
-
-        }, // success
-        error:  function(row) { console.log('error showColumnRow: ' + JSON.stringify(row)); }
-	}); // $.ajax
-
-} else {
-	console.log("ui_item.js...currentDB is blank:" + currentDB +".");
-}
-
-} // function getColumnRow
-*/
-
 function getDataItems(currentDataTable) {
 //	var columns = "<th>エンティティ</th><th>データ項目名</th><th>属性</th><th>長</th>";
 	var columns = "<th>データ項目名</th><th>属性</th><th>長</th>";
@@ -73,7 +14,7 @@ function getDataItems(currentDataTable) {
 	 $("#viewTable").append("<tfoot>"+ columns +"</tfoot>" );
 
 	 var currentDataTable = $('#viewTable').DataTable(
-			 { bAutoWidth : false, aLengthMenu : [20,50,100,200], bProcessing : true });
+			 { bAutoWidth : false, aLengthMenu : [15,20,30,50], bProcessing : true });
 
 	var param = {};
 	console.log("ui_model.js - getDataItems() ");
@@ -86,21 +27,13 @@ function getDataItems(currentDataTable) {
   		url: '/getDataItems',						// index.js getDataItems call
   		success: function(rows) {
   			for(var i=0; i<rows.length; i++) {		// error?
-//        	var list = [ rows[i].data_entity, '<input type=checkbox name=chk onchange=onCheck() value='+rows[i].uuid+'>'+ rows[i].data_item ,
-//           var list = [ rows[i].data_entity, '<input type=checkbox name=chk onchange=onCheck() value=100>100',
-//  				var list = [ rows[i].data_entity, '<input type=checkbox name=chk'+i+' onclick=onCheck() value='+rows[i].data_item+'>'+ rows[i].data_item,
-//  				var list = [ rows[i].data_entity, '<input type=button name=chk onclick=onCheck() value='+rows[i].data_item+'>'+ rows[i].data_item,
   				var data_name = rows[i].data_entity+"_"+rows[i].data_item;
-  				var list = [ '<input type=checkbox id=d'+i+' onclick=onCheck('+i+',\"'+data_name+'\") value=d'+i+'>'+ data_name,
+  				var list = [ '<input type=checkbox id=d'+i+' onclick=onCheck('+i+',\"'+data_name+'\",'+rows[i].data_length+') value=d'+i+'>'+ data_name,
   				             rows[i].data_type, rows[i].data_length ];
           		console.log('ui_model.js getDataItems item: '+ JSON.stringify(list) );
 
         	currentDataTable.row.add(list).draw();
-
-
            	//        	currentDataTable.row.add( list.concat( rows[i].data_type+"("+rows[i].data_length+")" ) ).draw();
-
-//        	currentDataTable.row.add( list.concat( rows[i].col_list ) ).draw();
            } // for
 
   		}, // success
@@ -109,17 +42,23 @@ function getDataItems(currentDataTable) {
 }
 
 
-function onCheck(i, item) {
-	 console.log('ui_model.js onCheck selected: ' + i + ' - ' + item + ' - ' +  document.getElementById("d"+i).checked);
+function onCheck(i, item, len) {
+	 console.log('ui_model.js onCheck selected: ' + i + ' - ' + item + ' - '+ len + ' - ' +  document.getElementById("d"+i).checked);
 
 	 var pos = item.indexOf("_");
 	 var data_name = ""
 
-	 if(pos>0) data_name = item.substr(pos+1);
+	 data_name = item.substr(pos+1);
+	 console.log("ui_model.js - onCheck(): "+data_name+", len: "+len);
+
 
 	 if (document.getElementById("d"+i).checked) {  // checked = true
+		 if (item.substr(0,1)=="_")
+			 $("#sortable").append("<font color=#888><li class=i"+i+">"+data_name+"</li></font>");
+		 else
+			 $("#sortable").append("<li class=i"+i+">"+data_name+" <input type=text size="+len+" maxlength="+len+"></li>");
+
 //		 $("#sortable").append("<li class=\"ui-state-default\">"+data_name+" <input type=text size=15 maxlength=15></li>");
-		 $("#sortable").append("<li class=i"+i+">"+data_name+" <input type=text size=15 maxlength=15></li>");
 	 } else {  // not checked
 		 $(".i"+i).remove();
 	 }

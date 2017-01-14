@@ -18,11 +18,18 @@ a:active 	{ color: #b0b0f0; }  /* �I�� */
 	font-size: 1em; text-align: left;
 }
 
-/* --- Bootstrap �Œ�w�b�_ --- */
+
+/* --- Bootstrap --- */
+.navbar {
+	min-height: 30px !important
+}
+
 #nav-header {
 	position: relative;  /* 相対配置（ガイドメニューのために設定） */
 	width: 100%; /* IE 6のために幅の指定が必要 */
-	margin-top: -5px; /* �w�b�_�̉��}�[�W�� */
+	margin-top: -12px; /* �w�b�_�̉��}�[�W�� */
+/*	margin-bottom: -20px; /* ���̃}�[�W�� */
+	height: 46px;
 
 	background: #404048; /* Old browsers */
 	background: -moz-linear-gradient(top,  #202028 0%, #606068 100%); 		/* FF3.6+ add */
@@ -36,7 +43,8 @@ a:active 	{ color: #b0b0f0; }  /* �I�� */
 /*  col-md-3: 25%, md4: 1/3, md5: 41%, md6: 50%, md7: 58%,  md8:2/3 */
 /*	width: 540px; /* �R���e�i�̕� */
 /*	margin: 0 auto; /* �Z���^�����O */
-	padding: 0px 5px 0px;  /* �w�b�_�̃p�f�B���O�i��A���E�A���j */
+	padding: 3px 5px 0px;  /* �w�b�_�̃p�f�B���O�i��A���E�A���j */
+/*	padding: 0px 0px 0px;  /* �w�b�_�̃p�f�B���O�i��A���E�A���j */
 	margin-bottom: -12px; /* ���̃}�[�W�� */
 	background: -moz-linear-gradient(top,  #e0e0f0 0%, #909098 100%); 		/* FF3.6+ add */
 	background: -webkit-linear-gradient(top,  #e0e0f0 0%, #909098 100%); 	/* Chrome10+,Safari5.1+ */
@@ -44,6 +52,28 @@ a:active 	{ color: #b0b0f0; }  /* �I�� */
 	background: linear-gradient(top,  #b0bccd 0%, #e0e0f0 0%, #686878 100); /* W3C */
 	color: #202020; 	/* Body�����F */
 }
+
+/*
+.navbar-header{
+	min-height: 30px !important
+	height: 2px;
+}
+
+.navbar-brand {
+	min-height: 30px !important
+	height: 2px;
+}
+
+.navbar-fixed-top {
+	min-height: 30px !important
+	height: 2px;
+}
+
+.navbar-inverse {
+	min-height: 30px !important
+	height: 2px;
+}
+*/
 
 
 /* Body�w�i/�e�L�X�g */

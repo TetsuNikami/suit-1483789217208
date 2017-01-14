@@ -109,6 +109,37 @@ exports.getDataItems = function(db_name, callback) {
 */
 
 	docs = [
+	     // blank
+			{uuid : uuid.v4(),
+			data_entity : "",
+			data_item : "blank1",
+			data_type : "",
+			data_length : "0",
+			},
+
+			{uuid : uuid.v4(),
+			data_entity : "",
+			data_item : "blank2",
+			data_type : "",
+			data_length : "0",
+			},
+
+			{uuid : uuid.v4(),
+			data_entity : "",
+			data_item : "blank3",
+			data_type : "",
+			data_length : "0",
+			},
+
+			{uuid : uuid.v4(),
+			data_entity : "",
+			data_item : "blank4",
+			data_type : "",
+			data_length : "0",
+			},
+
+
+		// 顧客情報
 			{uuid : uuid.v4(),
 			data_entity : "顧客情報TBL",
 			data_item : "顧客番号",
@@ -137,6 +168,7 @@ exports.getDataItems = function(db_name, callback) {
 			data_length : "3",
 			},
 
+		// 受注TBL
 			{uuid : uuid.v4(),
 			data_entity : "受注TBL",
 			data_item : "受注番号",
@@ -168,6 +200,14 @@ exports.getDataItems = function(db_name, callback) {
 			{uuid : uuid.v4(),
 			data_entity : "受注TBL",
 			data_item : "受注名",
+			data_type : "String",
+			data_length : "10",
+			},
+
+
+			{uuid : uuid.v4(),
+			data_entity : "受注TBL",
+			data_item : "企業名",
 			data_type : "String",
 			data_length : "10",
 			},

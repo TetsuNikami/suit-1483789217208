@@ -66,12 +66,15 @@
   </nav>  <!-- navbar -->>
 
 
+
+
+
 <section class="container" style="top:0px">
   <div class="row" >
-   	<div class="col-md-3" id="container"  style="top:30px;" > <!-- md3 + md9 = 12 -->
+   	<div class="col-md-12" id="container"  style="top:30px;" > <!-- md3 + md9 = 12 -->
    	<!-- form name="db_view"> -->
    	<!-- form name="screen_view"> -->
-   	<form name="data_list_view">
+   	<form name="screen_view">
 		<!-- div align="center" style="color:#b0b0d8;">Table</div> -->
 	    <select name="select_screen" id="select-screen" onchange = "changeDB()" >
 		<option value="screen1">商品受注登録画面</option>
@@ -84,17 +87,32 @@
 		<option value="scr_type3">検索_TBL表示</option>
 		<option value="scr_type4">検索_TBL更新削除</option>
 		</select>
+		&nbsp; - &nbsp;
 		<select name="edit_mode" id="edit-mode" onchange = "changeDB()" >
-		<option value="edit_mode1">　　　　　上部編集　　　　　</option>
-		<option value="edit_mode2">　　　　　下部編集　　　　　</option>
+		<option value="edit_mode1">　上部編集　</option>
+		<option value="edit_mode2">　下部編集　</option>
 		</select>
 
+	</form>
+    </div> <!-- col-md-12 -->
+  </div> <!-- row -->
+</section>
+
+
+
+
+<section class="container" style="top:0px">
+  <div class="row" >
+   	<div class="col-md-4" id="container"  style="top:30px;" > <!-- md3 + md9 = 12 -->
+   	<!-- form name="db_view"> -->
+   	<!-- form name="screen_view"> -->
+   	<form name="data_list_view">
 		<table id="viewTable" cellpadding="0" cellspacing="0" border="0" class="display compact"  >
 		</table>
 	</form>
     </div> <!-- col-md-3 -->
 
-    <div class="col-md-9" id="container" style="top:30px">
+    <div class="col-md-8" id="container" style="top:30px">
 	 	<!-- div align="center" style="color:#b0b0d8;" >Item</div> -->
 
 		<div id="UIcanvas">
