@@ -81,7 +81,19 @@ exports.getColumnRow = function(db_name, callback) {
 }; // post
 */
 
-//特定DBのIDを渡すことで、そのDB_IDの全レコード(Docs)取得
+
+//UIのデータ項目の順序を保管
+exports.postUIDataItems = function(screen, uiDataItems, callback) {
+	var docs = [];
+
+	console.log("suit_model_ut.js postUIDataItems(): " + uiDataItems );
+
+	callback(null, docs);
+}
+
+
+
+//データ辞書からデータ項目リストを取得
 exports.getDataItems = function(db_name, callback) {
 	// dbeaz_db のIndexをはらないと、最初のDBアクセスが遅い？
 	var docs = [];

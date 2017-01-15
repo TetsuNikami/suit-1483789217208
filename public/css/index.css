@@ -19,6 +19,14 @@ a:active 	{ color: #b0b0f0; }  /* �I�� */
 	font-size: 1em; text-align: left;
 }
 
+/*
+.ui-state-highlight {    // for sortable placeholder
+    height: 1em;
+    width: 200px;
+    border: dotted 1px #0000ff;
+    background-color: #888888;
+}
+*/
 
 /* --- Bootstrap --- */
 .navbar {

@@ -4,7 +4,8 @@ var currentUC = "オーダーエントリーUC";		// Current Use Case
 console.log('ui_model.js init, getDBList ' + currentUC);
 
 var itemLimit = 50;
-
+var ui_canvas_width = 800;
+var ui_item_width = ui_canvas_width-300;
 
 function getDataItems(currentDataTable) {
 //	var columns = "<th>エンティティ</th><th>データ項目名</th><th>属性</th><th>長</th>";
@@ -30,7 +31,7 @@ function getDataItems(currentDataTable) {
   				var data_name = rows[i].data_entity+"_"+rows[i].data_item;
   				var list = [ '<input type=checkbox id=d'+i+' onclick=onCheck('+i+',\"'+data_name+'\",'+rows[i].data_length+') value=d'+i+'>'+ data_name,
   				             rows[i].data_type, rows[i].data_length ];
-          		console.log('ui_model.js getDataItems item: '+ JSON.stringify(list) );
+          		//console.log('ui_model.js getDataItems item: '+ JSON.stringify(list) );
 
         	currentDataTable.row.add(list).draw();
            	//        	currentDataTable.row.add( list.concat( rows[i].data_type+"("+rows[i].data_length+")" ) ).draw();
@@ -42,21 +43,27 @@ function getDataItems(currentDataTable) {
 }
 
 
+//When Data item is checked in left data_item list
 function onCheck(i, item, len) {
-	 console.log('ui_model.js onCheck selected: ' + i + ' - ' + item + ' - '+ len + ' - ' +  document.getElementById("d"+i).checked);
+	 //console.log('ui_model.js onCheck selected: ' + i + ' - ' + item + ' - '+ len + ' - ' +  document.getElementById("d"+i).checked);
 
 	 var pos = item.indexOf("_");
 	 var data_name = ""
 
 	 data_name = item.substr(pos+1);
-	 console.log("ui_model.js - onCheck(): "+data_name+", len: "+len);
+
+	 if (uiDataItems!="")  uiDataItems = uiDataItems + "," + item;
+	 else 					uiDataItems = item;
+	 console.log("ui_model.js - onCheck(): "+uiDataItems+" len: "+len);
 
 
 	 if (document.getElementById("d"+i).checked) {  // checked = true
-		 if (item.substr(0,1)=="_")
-			 $("#sortable").append("<font color=#888><li class=i"+i+">"+data_name+"</li></font>");
+		 if (item.substr(0,1)=="_") // blank etc.
+			 $("#sortable").append("<font color=#ccc><li class=i"+i+" id="+item+">"+data_name+"</li></font>");
 		 else
-			 $("#sortable").append("<li class=i"+i+">"+data_name+" <input type=text size="+len+" maxlength="+len+"></li>");
+			 $("#sortable").append("<li class=i"+i+" id="+item+">"+data_name+" <input type=text size="+len+" maxlength="+len+"></li>");
+
+		 $("#sortable li").css("width", ui_item_width);
 
 //		 $("#sortable").append("<li class=\"ui-state-default\">"+data_name+" <input type=text size=15 maxlength=15></li>");
 	 } else {  // not checked
@@ -66,24 +73,54 @@ function onCheck(i, item, len) {
 
 }
 
-
+// When Number od column is changed in screen_view bar
 function changeScreenCol() {
 
-	var width = 800;
-
 	if (document.screen_view.select_screen_col.value == "scr_col1")
-		li_width = width-300;
+		ui_item_width = ui_canvas_width-300;
 	else if (document.screen_view.select_screen_col.value == "scr_col2")
-		li_width = (width-200)/2;
+		ui_item_width = Math.floor( (ui_canvas_width-200)/2 );
 	else if (document.screen_view.select_screen_col.value == "scr_col3")
-		li_width = (width-100)/3;
+		ui_item_width = Math.floor( (ui_canvas_width-100)/3 );
 	else if (document.screen_view.select_screen_col.value == "scr_col4")
-		li_width = (width-50)/4;
+		ui_item_width = Math.floor( (ui_canvas_width-50)/4 );
 
-	 $("#sortable li").css("width", li_width);
+	 $("#sortable li").css("width", ui_item_width);
 
-	 console.log("ui_model.js - changeScreenCol(): li_width = "+li_width+" - "+document.screen_view.select_screen_col.value);
+	 console.log("ui_model.js - changeScreenCol(): li_width = "+ui_item_width+" - "+document.screen_view.select_screen_col.value);
 }
+
+
+//When Save button is clicked in screen_view bar
+function saveLayout() {
+	var param = {};
+	param.screen = "商品受注登録画面";
+	param.items = 	uiDataItems
+
+	console.log("ui_model.js - saveLayout(): "+param.items);
+
+/*
+	$( "#sortable" ) . sortable( {
+        update: function( event, ui ) {
+            param.items = $( "#sortable" ) . sortable( "toArray" ) . join( "," );
+	       	console.log("ui_model.js - saveLayout(): "+param.items);
+        }
+    } );
+*/
+
+  	// POSTでのajaxコールで、サーバーのapp.jsのapp.post /getAll呼び出し
+  	$.ajax({
+  		type: 'POST',
+  		data: JSON.stringify(param),
+  		contentType: 'application/json',
+  		url: '/postUIDataItems',						// index.js getDataItems call
+  		success: function(row) {
+	       	 console.log("ui_model.js - saveLayout() retun: "+row);
+  		}, // success
+           error:  function(data) { console.log('error ui_model.js - saveLayout(): ' + row); }
+   }); // $.ajax
+}
+
 
 
 

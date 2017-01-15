@@ -11,6 +11,7 @@
 	<!-- script src="js/jquery-1.11.3.min.js"></script> -->
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/jquery.cookie.js"></script>
 	<script src="js/jquery.dataTables.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/ui_model.js"></script>
@@ -21,10 +22,44 @@
 	<link rel="shortcut icon" href="img/touchstone.jp.icon2.gif">
 
   <script>
+  var uiDataItems ="";
+
   $( function() {
-    $( "#sortable" ).sortable();
-    $( "#sortable" ).disableSelection();
-  } );
+	$( "#sortable" ).sortable();
+//	$( "#sortable" ).sortable({placeholder: 'ui-state-highlight',});
+	$( "#sortable" ).disableSelection();
+
+    $( "#sortable" ) . sortable( {
+        update: function( event, ui ) {
+        	uiDataItems = $( "#sortable" ) . sortable( "toArray" ) . join( "," );
+            $.cookie( "sortable", uiDataItems, { expires: 1 } );
+
+	       	 console.log("index.html - sortable(): "+uiDataItems);
+        }
+    } );
+
+/* currently do not use cookie recovery option
+    if( $.cookie( "sortable" ) ){
+        var cookieValue = jQuery . cookie( "sortable" ) . split( "," ) . reverse();
+	   	console.log("index.html - cookieValue: "+cookieValue);
+        $.each(
+            cookieValue,
+            function( i, item ){
+				var len = 10;
+	 			var pos = item.indexOf("_");
+				var data_name = item.substr(pos+1);
+				 //console.log("ui_model.js - onCheck(): "+data_name+", len: "+len);
+
+				 if (item.substr(0,1)=="_") // blank etc.
+					 $("#sortable").append("<font color=#ccc><li class=i"+i+" id="+item+">"+data_name+"</li></font>");
+				 else
+					 $("#sortable").append("<li class=i"+i+" id="+item+">"+data_name+" <input type=text size="+len+" maxlength="+len+"></li>");
+            }
+        );
+    }
+*/ // cookie recovery option
+  } ); // $function
+
   </script>
 
 
@@ -164,6 +199,8 @@ body, .item {
 			<option value="edit_mode1">　上部編集　</option>
 			<option value="edit_mode2">　下部編集　</option>
 			</select>
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			<input type="button" value="Save" onclick="saveLayout()">
 		</form>
 		</div>
 

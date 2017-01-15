@@ -28,6 +28,16 @@ var suit_model = require('./suit_model_ut');		// for Unit Test   */
   	});
   }); // post
 
+  //データ辞書からの全データ項目取得
+  router.post('/postUIDataItems', function(req, res){
+  	var docs = {};
+
+  	suit_model.postUIDataItems(req.body.screen, req.body.items, function (err, docs) {		// suit_model.getDataItems call
+  		console.log("index.js postDataItems...docs: %s", JSON.stringify(docs));
+  		res.send(docs);
+  	});
+  }); // post
+
 
 
 
