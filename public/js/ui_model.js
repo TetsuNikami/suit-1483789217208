@@ -7,6 +7,7 @@ var itemLimit = 50;
 var ui_canvas_width = 800;
 var ui_item_width = ui_canvas_width-300;
 
+
 function getDataItems(currentDataTable) {
 //	var columns = "<th>エンティティ</th><th>データ項目名</th><th>属性</th><th>長</th>";
 	var columns = "<th>データ項目名</th><th>属性</th><th>長</th>";
@@ -16,6 +17,12 @@ function getDataItems(currentDataTable) {
 
 	 var currentDataTable = $('#viewTable').DataTable(
 			 { bAutoWidth : false, aLengthMenu : [13,20,30,50], bProcessing : true });
+
+	// tableCanvas -- tentative in here
+	 $("#botTable").append("<thead><th>カラム1</th><th>カラム2</th><th>カラム3</th><th>カラム4</th></thead>" );
+	 var bottomTable = $('#botTable').DataTable(
+	 		 { bAutoWidth : false, aLengthMenu : [10,20,30,50], bProcessing : false });
+
 
 	var param = {};
 	console.log("ui_model.js - getDataItems() ");
@@ -119,8 +126,18 @@ function saveLayout() {
   		}, // success
            error:  function(data) { console.log('error ui_model.js - saveLayout(): ' + row); }
    }); // $.ajax
+
+
+	 $("#statusLine").append("Saved \""+uiDataItems+"\" to [商品受注登録画面] <br>");
+  	window.status = "Saved "+uiDataItems+" to [商品受注登録画面] ";
 }
 
+
+//When Add DataItem button is clicked in screen_view bar
+function addUIDataItem() {
+
+
+}
 
 
 

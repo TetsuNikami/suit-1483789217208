@@ -28,6 +28,13 @@ a:active 	{ color: #b0b0f0; }  /* �I�� */
 }
 */
 
+div.spacer
+{
+    font-size: 0;
+    height: 10px;
+    line-height: 0;
+}
+
 /* --- Bootstrap --- */
 .navbar {
 	min-height: 30px !important
