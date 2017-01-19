@@ -17,16 +17,16 @@ app.use(express.static(__dirname + '/public'));
 var server = require('./server');
 app.use('/', server);
 
-/* LOCAL: */
+/* LOCAL:
 //LOCAL: 環境変数にポート番号が無ければ、port=3000 設定
 var port = (process.env.VCAP_APP_PORT || 3000);
 // サーバー開始 （ "throw er;" エラーが出力されたらポート重複）
 app.listen(port);
 console.log('app.js started on port ' + port);
-/**/
+*/
 
 
-/* Bluemix
+/* Bluemix */
 //cfenv provides access to your Cloud Foundry environment
 //for more info, see: https://www.npmjs.com/package/cfenv
 var cfenv = require('cfenv');
@@ -39,5 +39,5 @@ app.listen(appEnv.port, '0.0.0.0', function() {
 // print a message when the server starts listening
 console.log("server starting on " + appEnv.url);
 });
-*/
+/**/
 
