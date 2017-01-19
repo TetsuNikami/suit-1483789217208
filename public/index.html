@@ -182,9 +182,9 @@ body, .item {
 			<option value="screen3">商品検索画面</option>
 			</select>
 			<select name="select_screen_type" id="select-screen-type" onchange = "changeDB()" >
-			<option value="scr_type1">入力_登録</option>
-			<option value="scr_type2">表示_確認</option>
-			<option value="scr_type3">検索_TBL表示</option>
+			<option value="scr_type1">検索_TBL表示</option>
+			<option value="scr_type2">入力_登録</option>
+			<option value="scr_type3">表示_確認</option>
 			<option value="scr_type4">検索_TBL更新削除</option>
 			</select>
 			<select name="select_screen_col" id="select-screen-col" onchange = "changeScreenCol()" >
@@ -210,7 +210,6 @@ body, .item {
 			</table>
 		</div> <!-- UICanvas -->
 
-
 		<div id="right_upper">
 		<div id="sortCanvas">
 		<ul id="sortable">
@@ -221,6 +220,21 @@ body, .item {
 
 		<div class="spacer"></div>
 
+
+		<div id="ButtonCanvas">
+			<table id="canvasButton" cellpadding="0" cellspacing="5" border="0" class="display compact"  ><tr>
+			</table>
+		</div> <!-- ButtonCanvas -->
+
+		<div class="spacer"></div>
+
+		<div id="right_mid">
+		<div id="midCanvas">
+			<input type="button" value="Search" id="SearchButton" onclick="onChange()">
+		</div>
+		</div> <!-- right_mid -->
+
+
 		<div id="right_bot">
 		<br><br><br>
 		<div id="tableCanvas">
@@ -230,12 +244,7 @@ body, .item {
 		<br><br><br>
 		</div> <!-- right_bot -->
 
-		<div id="right_mid">
-		<div id="midCanvas">
-			<input type="button" value="Search" id="SearchButton" onclick="onChange()">
-		</div>
-		<br><br><br>
-		</div> <!-- right_mid -->
+
 
 	</div> <!-- right_frame -->
 </div> <!-- middle -->
