@@ -41,46 +41,6 @@ console.log('suit_model.js DB connected to: %s, port: %s', host, port);
 // dbeaz_db: 	DB名
 // col_list:	そのレコードのカラム値 例： ["a","b","c" ]
 
-/*
-//特定DBのIDを渡すことで、そのDB_IDのカラム名取得
-exports.getColumnRow = function(db_name, callback) {
-	// 二つのキーによるビューの検索
-	var colname_key = { key : [ "cols_name", db_name ] };
-	var colname_row = {};
-	var doc = {};
-
-	console.log("dbeaz.js getColumnRow...colname_key: " + JSON.stringify(colname_key) );
-
-/*
-	db.view('dbeaz/list_docs', colname_key,  function (err, colname_rows) {
-		if (!err) {
-			 colname_rows.forEach(function (id, colname_row) {
-				 console.log("dbeaz.js getColumnRow...colname key: %s, row: %s", id, JSON.stringify(colname_row));
-				 doc = colname_row;
-				 ////currentDBList = colname_row.col_list;
-			 });
-		} else { console.log("dbeaz.js getColumnRow...colname error: " + err); }
-
-		//console.log("dbeaz.js getColumnRow...colname row: %s", JSON.stringify(doc));
-		callback(null, doc)
-	}); // 1st db.view
-
-
-
-	doc = {
-			uuid : uuid.v4(),
-			date : "2016/12",
-			dbeaz_id : "cols_name",
-			dbeaz_db : "Opportunity List",
-			col_list : [ "名称" ,"金額", "予定日", "ステータス", "メモ"]
-		};
-
-	callback(null, doc);
-
-
-}; // post
-*/
-
 
 //UIのデータ項目の順序を保管
 exports.postUIDataItems = function(screen, uiDataItems, callback) {
@@ -90,7 +50,6 @@ exports.postUIDataItems = function(screen, uiDataItems, callback) {
 
 	callback(null, docs);
 }
-
 
 
 //データ辞書からデータ項目リストを取得
@@ -238,18 +197,10 @@ exports.getDataItems = function(db_name, callback) {
 			data_length : "10",
 			},
 
-			/*
-			{uuid : uuid.v4(),
-			date : now,
-			dbeaz_id : "Opportunity List",
-			col_list : [ "信託銀行" ,"6", "2016/4/1", "提案", "提案交渉中"]
-			}
-			*/
 		   ];
-
 
 	callback(null, docs);
 
-}; // getDocs
+}; // getDataItems
 
 

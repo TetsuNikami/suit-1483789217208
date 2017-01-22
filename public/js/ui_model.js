@@ -12,10 +12,10 @@ function getDataItems(currentDataTable) {
 //	var columns = "<th>エンティティ</th><th>データ項目名</th><th>属性</th><th>長</th>";
 	var columns = "<th>データ項目名</th><th>属性</th><th>長</th>";
 
-	 $("#viewTable").append("<thead>"+ columns +"</thead>" );
-	 $("#viewTable").append("<tfoot>"+ columns +"</tfoot>" );
+	 $("#dataItemTable").append("<thead>"+ columns +"</thead>" );
+	 $("#dataItemTable").append("<tfoot>"+ columns +"</tfoot>" );
 
-	 var currentDataTable = $('#viewTable').DataTable(
+	 var currentDataTable = $('#dataItemTable').DataTable(
 			 { bAutoWidth : false, aLengthMenu : [13,20,30,50], bProcessing : true });
 
 	// tableCanvas -- tentative in here
@@ -139,31 +139,5 @@ function addUIDataItem() {
 
 }
 
-
-
-// 初期画面の表示で、POSTでindex.jsのgetDBListをコールしDB List取得、SELECTリストに表示
-/*
-$.ajax({
-	type: 'POST',
-	data: {},
-	contentType: 'application/json',
-    url: '/getDBList',
-    success: function(rows) {
-         for(var i=0; i<rows.length; i++) {
-    		//console.log('  DBList row '+ i +": "+ JSON.stringify(rows[i].value));
-
-    		// 上部のSELECTリストに追加
-    		for(var k=0; k<rows[i].value.col_list.length; k++) {
-    			$("#select-db-list").append("<option value=\"" + rows[i].value.col_list[k] + "\">" + rows[i].value.col_list[k] + " </option>");
-    			//console.log('ui_item DBList col_list '+ i + k +": "+ JSON.stringify(rows[i].value.col_list[k]));
-   	     	}
-   	   	}
-
-         // currentDBがある場合は、リストのそこを表示
-         if (currentDB!="") $("#select-db-list").val( currentDB );
-    },
-	error:  function(rows) { console.log('error getAll: ' + JSON.stringify(rows) ) }
-}); // ajax
-*/
 
 

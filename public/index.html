@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 	<title>Speed UI Tool α</title>
-	<link rel="stylesheet" href="css/index.css"/>
+	<link rel="stylesheet" href="css/index.css"/> <!-- custom for SUIT -->
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="css/jquery-ui.min.css"/>
 	<link rel="stylesheet" href="css/jquery.dataTables.min.css"/>
@@ -15,10 +15,7 @@
 	<script src="js/jquery.dataTables.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/ui_model.js"></script>
-	<!-- script type="text/javascript" src="js/ui_item.js"></script -->
 	<script> $(document).ready(function(){ getDataItems() }); 	</script>
-	<!-- script> $(document).ready(function(){ getColumnRow() }); 	</script> -->
-	<!-- script> $(document).ready(function(){ $('#viewTable').dataTable() }); 	</script -->
 	<link rel="shortcut icon" href="img/touchstone.jp.icon2.gif">
 
   <script>
@@ -61,81 +58,13 @@
   } ); // $function
 
   </script>
-
-
-<style>
-html {
-	height: 100%;
-	margin: 0;
-}
-
-body {
-	margin: 0;
-/*	padding-bottom: -50px;*/
-	padding-top: 50px;
-}
-
-body, .item {
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	height: 100%;
-	overflow: auto;
-}
-
-#header {
-	background-color: #202080;
-	color: #202020;
-	height: 48px;
-	margin-top: -60px;
-	padding: 5px;
-}
-
-/* #upper { */
-#right_top {
-	background-color: #ccc;
-	color: #202020;
-	height: 37px;
-	padding: 8px;
-}
-
-/*
-#footer {
-	background-color: #202080;
-	bottom: 0;
-	height: 5px;
-	overflow: hidden;
-	position: absolute;
-	width: 100%;
-}
-
-#middle {
-	bottom: 0;
-}
-
-*/
-
-
-#left_frame {
-	float: left;
-	width: 300px;
-	background-color: #c0c0c0;
-	color: #202020;
-}
-
-#right_frame {
-	background-color: #ffffff;
-	color: #000000;
-}
-
-.spacer {
-	height: 100px;
-}
-</style>
 </head>
 
 <body id="backwall">
 
-<div id="header" class="item">
+<!--  div id="header"-->
+<div id="header" class="item2">
+
       <div class="navbar-header" >
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>
@@ -163,23 +92,25 @@ body, .item {
 			&nbsp; &nbsp; &nbsp;
 			</h5>
 	    </form>
-	  </div><!--/.navbar-collapse -->
-</div>
+	  </div> <!--/.navbar-collapse -->
+</div> <!-- header -->
 
 
+<!-- div id="middle" class="item" -->
 <div id="middle" class="item">
 	<div id="left_frame" class="item">
 	<form name="data_list_view">
-		<table id="viewTable" cellpadding="0" cellspacing="0" border="0" class="display compact"  >
+		<table id="dataItemTable" cellpadding="0" cellspacing="0" border="0" class="display compact"  >
 		</table>
 	</form>
 	</div> <!-- left_frame -->
 
 
-	<div id="right_frame" class="item">
+	<div id="right" class="item2">
+
 		<div id="right_top">
    		<form name="screen_view">
-			<!-- div align="center" style="color:#b0b0d8;">Table</div> -->
+			<!-- div align="center" style="color:#b0b0d8;">Table</div -->
 		    <select name="select_screen" id="select-screen" onchange = "changeDB()" >
 			<option value="screen1">商品受注登録画面</option>
 			<option value="screen2">顧客検索画面</option>
@@ -211,10 +142,14 @@ body, .item {
 		</form>
 		</div> <!-- right_top -->
 
-		<div id="UIcanvas">
-			<table id="canvasTable" cellpadding="0" cellspacing="5" border="0" class="display compact"  ><tr>
-			</table>
-		</div> <!-- UICanvas -->
+
+
+
+
+	<div id="right_frame" class="item">
+
+
+
 
 		<div id="right_upper">
 		<div id="sortCanvas">
@@ -253,6 +188,10 @@ body, .item {
 
 
 	</div> <!-- right_frame -->
+
+	</div> <!-- right-->
+
+
 </div> <!-- middle -->
 
 <div id="footer" class="item">
@@ -263,9 +202,6 @@ body, .item {
     <button value="テストデータ追加" id="addTestData"> テストデータ追加 </button>
     <button value="全件削除" id="removeAll"> 全件削除 </button>
 </div>
-
-</body>
-</html>
 
 </body>
 </html>
