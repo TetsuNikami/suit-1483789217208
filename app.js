@@ -26,7 +26,7 @@ console.log('app.js started on port ' + port);
 */
 
 
-/* Bluemix */
+/* Bluemix  */
 //cfenv provides access to your Cloud Foundry environment
 //for more info, see: https://www.npmjs.com/package/cfenv
 var cfenv = require('cfenv');
